@@ -1,0 +1,17 @@
+{
+    "name": "hubert/bowling-calc",
+    "require": {
+        "phpunit/phpunit": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "BowlingCalc\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hubert",
+            "email": "h.brylkowski@gmail.com"
+        }
+    ]
+}
