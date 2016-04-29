@@ -23,60 +23,52 @@ class Frame implements FrameInterface
     }
 
     /**
-     * @return FrameInterface
-     */
-    public function getNextFrame()
-    {
-        return $this->nextFrame;
-    }
-
-    /**
      * @param FrameInterface $nextFrame
      */
-    public function setNextFrame($nextFrame)
+    public function bindNextFrame($nextFrame)
     {
         $this->nextFrame = $nextFrame;
     }
 
-    public function getFirstThrowPins()
+    public function firstThrowPins()
     {
         return $this->firstThrow;
     }
 
-    public function getSecondThrowPins()
+    public function secondThrowPins()
     {
         if($this->firstThrow !== 10){
             return $this->secondThrow;
         } elseif ($this->nextFrame !== null) {
-            return $this->nextFrame->getFirstThrowPins();
+            return $this->nextFrame->firstThrowPins();
         }
         return 0;
     }
 
-    private function getFirstThrowScore()
+    private function calculateFirstThrowScore()
     {
         $score = $this->firstThrow;
         if($this->firstThrow === 10 && $this->nextFrame){
-            $score += $this->nextFrame->getFirstThrowPins();
-            $score += $this->nextFrame->getSecondThrowPins();
+            $score += $this->nextFrame->firstThrowPins();
+            $score += $this->nextFrame->secondThrowPins();
         }
         return $score;
     }
     
-    private function getSecondThrowScore()
+    private function calculateSecondThrowScore()
     {
         if($this->firstThrow === 10)
             return 0;
         $score = $this->secondThrow;
         if(($this->firstThrow + $this->secondThrow) === 10 && $this->nextFrame){
-            $score += $this->nextFrame->getFirstThrowPins();
+            $score += $this->nextFrame->firstThrowPins();
         }
         return $score;
     }
     
-    public function getFrameScore()
+    public function calculateFrameScore()
     {
-        return $this->getFirstThrowScore() + $this->getSecondThrowScore();
+        return $this->calculateFirstThrowScore() + $this->calculateSecondThrowScore();
     }
 
 }

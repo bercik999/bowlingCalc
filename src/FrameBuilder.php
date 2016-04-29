@@ -12,9 +12,9 @@ class FrameBuilder
         if($throw === 'X'){
             $this->frames[] =  new Frame(10, 0);
         } elseif(!$this->throwsBuffer){
-            $this->throwsBuffer[] = $this->getPins($throw);
+            $this->throwsBuffer[] = $this->calculatePinsKnocked($throw);
         } else {
-            $this->frames[] =  new Frame($this->throwsBuffer[0], $this->getPins($throw));
+            $this->frames[] =  new Frame($this->throwsBuffer[0], $this->calculatePinsKnocked($throw));
             $this->throwsBuffer = [];
         }
     }
@@ -22,9 +22,13 @@ class FrameBuilder
     public function addLastFrameThrow($throw)
     {
         if(count($this->throwsBuffer) === 2){
-            $this->frames[] = new LastFrame($this->throwsBuffer[0], $this->throwsBuffer[1], $this->getPins($throw));
+            $this->frames[] = new LastFrame(
+                $this->throwsBuffer[0],
+                $this->throwsBuffer[1],
+                $this->calculatePinsKnocked($throw)
+            );
         } else {
-            $this->throwsBuffer[] = $this->getPins($throw);
+            $this->throwsBuffer[] = $this->calculatePinsKnocked($throw);
         }
     }
  
@@ -36,7 +40,7 @@ class FrameBuilder
         return $this->frames;
     }
 
-    private function getPins($throw)
+    private function calculatePinsKnocked($throw)
     {
         switch ($throw){
             case 'X':

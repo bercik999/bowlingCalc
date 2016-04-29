@@ -28,17 +28,17 @@ class LastFrame implements FrameInterface
         return null;
     }
 
-    public function getFirstThrowPins()
+    public function firstThrowPins()
     {
         return $this->firstThrow;
     }
 
-    public function getSecondThrowPins()
+    public function secondThrowPins()
     {
         return $this->secondThrow;
     }
 
-    public function getFrameScore()
+    public function calculateFrameScore()
     {
         return $this->firstThrow + $this->secondThrow + $this->thirdThrow;
     }

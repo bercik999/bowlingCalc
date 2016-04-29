@@ -4,13 +4,7 @@ namespace BowlingCalc;
 
 interface FrameInterface
 {
-    /**
-     * @return FrameInterface
-     */
-    public function getNextFrame();
-    
-    public function getFirstThrowPins();
-    public function getSecondThrowPins();
-    public function getFrameScore();
-    
+    public function firstThrowPins();
+    public function secondThrowPins();
+    public function calculateFrameScore();
 }

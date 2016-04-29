@@ -12,7 +12,7 @@ class GameTest extends \PHPUnit_Framework_TestCase
     public function testGetScore($input, $score){
         $gameFactory = new GameFactory(new FrameBuilder());
         $game = $gameFactory->create($input);
-        $this->assertEquals($score, $game->getScore());
+        $this->assertEquals($score, $game->calculateScore());
     }
 
     public function gamesProvider()

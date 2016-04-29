@@ -48,7 +48,7 @@ class GameFactory {
         foreach ($frames as $i => &$frame) {
             if (!isset($frames[$i + 1]))
                 break;
-            $frame->setNextFrame($frames[$i + 1]);
+            $frame->bindNextFrame($frames[$i + 1]);
         }
         return $frames;
     }

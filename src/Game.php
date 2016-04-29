@@ -17,11 +17,11 @@ class Game {
         $this->frames = $frames;
     }
 
-    public function getScore()
+    public function calculateScore()
     {
         $sum = 0;
         foreach ($this->frames as $frame) {
-            $sum += $frame->getFrameScore();
+            $sum += $frame->calculateFrameScore();
         }
         return $sum;
     }
